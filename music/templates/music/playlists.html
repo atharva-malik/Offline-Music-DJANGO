@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Playlists</title>
+</head>
+<body>
+    <h1>{{ user.username }}'s Playlists</h1>
+    <br/>
+    {% for playlist in playlists %}
+        <li><a href="/music/playlists/{{ playlist.id}}"> {{ playlist.title }} </a></li>
+    {% endfor %}
+    <br/><a href="/">Return home?</a>
+</body>
+</html>

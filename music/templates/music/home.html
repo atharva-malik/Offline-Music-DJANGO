@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ user.username }}</title>
+  <style type="text/css">
+    h1 {
+      text-align: center;
+    }
+    a {
+      text-align: center;
+    }
+    a:link {
+      color: blue;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    a:visited {
+      color: blue;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    a:hover {
+      color: purple;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    a:active {
+      color: red;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="font-size: 60px">{{ user.username }}'s Profile</h1>
+  <div style="text-align:center; font-size: 40px;">
+    <a href="/music/playlists">Playlists</a> |
+    <a href="/music/songs">Songs</a> |
+    <a href="/polls/">Voting</a>
+  </div>
+</body>
+</html>

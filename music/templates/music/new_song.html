@@ -1,0 +1,11 @@
+<style>
+    textarea{
+        vertical-align: middle;
+    }
+</style>
+<h1>Add a song to your playlists!</h1>
+<form method="post" action="{% url 'music:new_song' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="OK">
+</form>

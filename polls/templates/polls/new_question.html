@@ -1,0 +1,11 @@
+<style>
+    textarea{
+        vertical-align: middle;
+    }
+</style>
+<h1>Add a song for voting!</h1>
+<form method="post" action="{% url 'polls:new_question' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="OK">
+</form>

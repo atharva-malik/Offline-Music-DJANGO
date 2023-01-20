@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ user.username }}'s Songs</title>
+  <script type="text/javascript">
+    function createAudioArray(songStr) {
+      var songList = songStr.split(',');
+      var audioArray = [];
+      var addedSongs = new Set();
+      for (var i = 0; i < songList.length; i++) {
+        var songName = songList[i];
+        if (!addedSongs.has(songName)) {
+          var songUrl = '/media/' + songName.replace(/\s/g, '') + '.mp3';
+          var audio = new Audio(songUrl);
+          audioArray.push(audio);
+        }
+      }
+      return audioArray;
+    }
+    //var sounds = [new Audio("/media/Sunflower.mp3"), new Audio("/media/Bones.mp3")];
+    var sounds = createAudioArray("{{ songlist }}");
+    var songNameList = "{{ songNameList }}".split(',');
+    var i = -1;
+    function playSnd() {
+      i++;
+      if (i == sounds.length) i = 0;
+      else if (i < 0) i = sounds.length - 1;
+      sounds[i].addEventListener('ended', playSnd);
+      sounds[i].play();
+      document.getElementById("name").innerHTML = "Now playing: " + songNameList[i];
+      hideElement("Play");
+    }
+    function pauseSnd() {
+      sounds[i].pause();
+      i--;
+      hideElement("Play");
+    }
+    function stopSnd() {
+      sounds[i].pause();
+      sounds[i].currentTime = 0;
+      i--;
+      hideElement("Play");
+    }
+    function next() {
+      stopSnd();
+      i++;
+      playSnd();
+    }
+    function previous() {
+      stopSnd();
+      i--;
+      playSnd();
+      //document.write(i)
+    }
+    function hideElement(id) {
+      var x = document.getElementById(id);
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      }
+      else {
+        x.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+  {% if songlist %}
+  <p id="name"></p>
+  <input type = "button" onclick = "playSnd()" value = "Play" id="Play"><br/>
+  <input type = "button" onclick = "pauseSnd()" value = "Pause" id="Pause"><br/><br/>
+  <input type = "button" onclick = "stopSnd()" value = "Stop" id="Stop"><br/><br/>
+  <input type = "button" onclick = "next()" value = "Next"><br/><br/>
+  <input type = "button" onclick = "previous()" value = "Previous"><br/>
+  {% endif %}
+  <a href="/music/add_song/">Add song?</a>
+  <a href="/">Return home?</a>
+</body>
+</html>
