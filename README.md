@@ -26,7 +26,7 @@ Install the repository and the following package and you are good to go!
 pip install django==4.1.4
 ```
 
-To start the devolpment server on 127.0.0.1:8000 __or__ localhost:8000 (for Chrome), run the flowing commands
+To start the development server on 127.0.0.1:8000 __or__ localhost:8000 (for Chrome), run the flowing commands
 1. To start the server:
 
     ```sh
